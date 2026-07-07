@@ -50,6 +50,9 @@ export function useShaderMaterialRenderer({ displayMesh, shading, isSelected, ma
       wireframe: shading === 'wireframe',
       side: DoubleSide,
       flatShading: (displayMesh?.shading ?? 'flat') === 'flat',
+      polygonOffset: shading !== 'wireframe',
+      polygonOffsetFactor: 1,
+      polygonOffsetUnits: 1,
       shadowSide: 1,
     });
 
@@ -58,6 +61,9 @@ export function useShaderMaterialRenderer({ displayMesh, shading, isSelected, ma
         (nodeMaterial as any).wireframe = shading === 'wireframe';
         (nodeMaterial as any).flatShading = (displayMesh?.shading ?? 'flat') === 'flat';
         (nodeMaterial as any).side = DoubleSide;
+        (nodeMaterial as any).polygonOffset = shading !== 'wireframe';
+        (nodeMaterial as any).polygonOffsetFactor = 1;
+        (nodeMaterial as any).polygonOffsetUnits = 1;
         (nodeMaterial as any).emissiveIntensity = emissiveIntensity;
       } catch {
         // ignore if node material doesn't accept these

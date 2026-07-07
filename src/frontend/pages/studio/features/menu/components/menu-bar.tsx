@@ -160,6 +160,7 @@ const MenuBar: React.FC<Props> = ({ onOpenShaderEditor }) => {
 	const handleImportGLB = useCallback(() => {
 		openGLTFImportDialog(
 			(summary: ImportSummary) => {
+				useViewportStore.getState().setShadingMode('solid');
 				// Optionally focus the newly imported group
 				useSceneStore.getState().selectObject(summary.rootGroupId);
 			},
@@ -415,7 +416,7 @@ const MenuBar: React.FC<Props> = ({ onOpenShaderEditor }) => {
 								</Menu.Item>
 								<Menu.Item className="w-full text-left px-3 py-1.5 hover:bg-white/10 text-gray-200" onClick={() => viewportStore.setShadingMode('solid')}>
 									<span className="flex items-center justify-between w-full">
-										<span>Solid</span>
+										<span>Solid + Wire</span>
 										{viewportStore.shadingMode === 'solid' ? <Check className="w-3.5 h-3.5 text-gray-300" /> : <span className="w-3.5 h-3.5" />}
 									</span>
 								</Menu.Item>

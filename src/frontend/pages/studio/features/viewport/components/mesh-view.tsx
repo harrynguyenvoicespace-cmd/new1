@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { Raycaster, Intersection, Mesh } from 'three/webgpu';
+import { Raycaster, Intersection, Mesh, WireframeGeometry } from 'three/webgpu';
 import useDisplayMesh from '../hooks/useDisplayMesh';
 import useGeometryAndMaterial from '../hooks/useGeometryAndMaterial';
 import { useViewportStore } from '@/stores/viewport-store';
@@ -33,6 +33,14 @@ const MeshView: React.FC<Props> = ({ objectId, noTransform = false }) => {
 
   // Material renderer hook returns the final material (node material preferred)
   const activeMaterial = useShaderMaterialRenderer({ displayMesh, shading, isSelected, materials: geometryStore.materials });
+  const wireGeometry = React.useMemo(() => {
+    if (!geomAndMat?.geom || shading === 'wireframe') return null;
+    return new WireframeGeometry(geomAndMat.geom);
+  }, [geomAndMat?.geom, shading]);
+
+  React.useEffect(() => () => {
+    wireGeometry?.dispose();
+  }, [wireGeometry]);
 
   // Track the pointer-down position to distinguish orbit/drag from a click
   const downRef = useRef<{ x: number; y: number; id: string } | null>(null);
@@ -95,19 +103,41 @@ const MeshView: React.FC<Props> = ({ objectId, noTransform = false }) => {
   // geomAndMat.mat was a placeholder earlier; ensure we use the material from the hook
   // NOTE: geomAndMat.mat is no longer used directly.
 
+  const showWireOverlay = shading !== 'wireframe' && !!wireGeometry;
+  const wireColor = isSelected ? '#24272d' : '#5f6670';
+  const wireOpacity = isSelected ? 0.36 : 0.24;
+
   const meshEl = (
-    <mesh
-      geometry={geomAndMat.geom}
-      material={activeMaterial}
-      castShadow={!!displayMesh.castShadow}
-      receiveShadow={!!displayMesh.receiveShadow}
-      // Disable raycast when locked so clicks pass through
-      // In edit mode, disable raycast only for the specific object being edited
-      raycast={raycastFn}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onDoubleClick={onDoubleClick}
-    />
+    <group>
+      <mesh
+        geometry={geomAndMat.geom}
+        material={activeMaterial}
+        castShadow={!!displayMesh.castShadow}
+        receiveShadow={!!displayMesh.receiveShadow}
+        // Disable raycast when locked so clicks pass through
+        // In edit mode, disable raycast only for the specific object being edited
+        raycast={raycastFn}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onDoubleClick={onDoubleClick}
+      />
+      {showWireOverlay ? (
+        <lineSegments
+          geometry={wireGeometry}
+          renderOrder={3}
+          raycast={() => { }}
+        >
+          <lineBasicMaterial
+            color={wireColor}
+            transparent
+            opacity={wireOpacity}
+            depthTest
+            depthWrite={false}
+            toneMapped={false}
+          />
+        </lineSegments>
+      ) : null}
+    </group>
   );
 
   if (noTransform) return meshEl;

@@ -109,6 +109,7 @@ function boundsForImported(summary: ImportSummary) {
 }
 
 function revealImported(summary: ImportSummary) {
+  useViewportStore.getState().setShadingMode('solid');
   useSceneStore.getState().selectObject(summary.rootGroupId);
   const selection = useSelectionStore.getState();
   if (selection.selection.viewMode === 'object') selection.selectObjects([summary.rootGroupId], false);
