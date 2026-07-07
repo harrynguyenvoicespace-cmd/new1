@@ -45,6 +45,7 @@ next-dev*.log
 # cloudflare
 .wrangler/
 .wrangler-dry-run/
+.wrangler-site-dry-run/
 .dev.vars
 **/.dev.vars
 

@@ -1,5 +1,5 @@
-import AppDashboard from '@/frontend/pages/dashboard/AppDashboard';
+import DashboardClient from "./DashboardClient";
 
 export default function Dashboard() {
-  return <AppDashboard />;
+  return <DashboardClient />;
 }

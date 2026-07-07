@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "roblox-ugc-ai-studio",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-07",
+  "compatibility_flags": [
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": "../../out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  },
+  "vars": {
+    "NEXT_PUBLIC_API_ROOT_URL": "https://tripo-cloudflare-api.harrynguyenvoicespace.workers.dev/v1",
+    "NEXT_PUBLIC_TRIPO_API_ROOT_URL": "https://tripo-cloudflare-api.harrynguyenvoicespace.workers.dev/v1"
+  }
+}

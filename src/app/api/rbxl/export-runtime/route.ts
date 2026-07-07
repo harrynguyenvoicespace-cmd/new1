@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 export async function POST() {
   return rbxlNativeUnavailable();
 }

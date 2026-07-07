@@ -1,5 +1,5 @@
-import AuthPage from '@/frontend/pages/auth/AuthPage';
+import AuthClient from "./AuthClient";
 
 export default function Auth() {
-  return <AuthPage />;
+  return <AuthClient />;
 }

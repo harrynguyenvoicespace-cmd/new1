@@ -1,5 +1,5 @@
-import StudioPage from "@/frontend/pages/studio/StudioPage";
+import StudioClient from "./StudioClient";
 
 export default function Studio() {
-  return <StudioPage />;
+  return <StudioClient />;
 }

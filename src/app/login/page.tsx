@@ -1,5 +1,5 @@
-import LoginPage from "@/frontend/pages/login/LoginPage";
+import LoginClient from "./LoginClient";
 
 export default function Login() {
-  return <LoginPage />;
+  return <LoginClient />;
 }

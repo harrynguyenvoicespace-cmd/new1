@@ -1,5 +1,5 @@
-import PaymentPage from "@/frontend/pages/payment-page/PaymentPage";
+import PaymentClient from "./PaymentClient";
 
 export default function Payment() {
-  return <PaymentPage />;
+  return <PaymentClient />;
 }

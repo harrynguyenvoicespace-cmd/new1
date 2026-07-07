@@ -1,5 +1,5 @@
-import ProfilePage from "@/frontend/pages/profile/ProfilePage";
+import ProfileClient from "./ProfileClient";
 
 export default function Profile() {
-  return <ProfilePage />;
+  return <ProfileClient />;
 }
