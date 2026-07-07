@@ -1,4 +1,17 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export async function GET() {
+  return Response.json({ ok: true, exports: [] });
+}
 
-export { GET, POST } from "@/backend/api/rbxl/runtime-exports/route";
+export async function POST() {
+  return rbxlNativeUnavailable();
+}
+
+function rbxlNativeUnavailable() {
+  return Response.json(
+    {
+      ok: false,
+      error: "RBXL runtime export needs the native rbxl_tool backend and cannot run inside Cloudflare Workers.",
+    },
+    { status: 501 },
+  );
+}
