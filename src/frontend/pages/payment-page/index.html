@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brainwave Payment Plans</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="stage">
+    <section class="payment-window" aria-labelledby="page-title">
+      <header class="app-header">
+        <a class="brand" href="#" aria-label="Brainwave home">
+          <span class="brand-mark"></span>
+          <span>Brainwave</span>
+        </a>
+
+        <nav class="header-actions" aria-label="Quick actions">
+          <button class="icon-button" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/>
+            </svg>
+          </button>
+          <button class="icon-button has-dot" aria-label="Activity">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z"/>
+            </svg>
+          </button>
+          <button class="avatar-button" aria-label="Open profile"></button>
+        </nav>
+      </header>
+
+      <div class="content">
+        <h1 id="page-title">Choose your plan</h1>
+
+        <div class="billing-toggle" role="group" aria-label="Billing period">
+          <button class="billing-option active" type="button" data-period="monthly">Pay monthly</button>
+          <button class="billing-option" type="button" data-period="yearly">
+            Pay yearly
+            <span class="saving-dot" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="pricing-grid" aria-label="Pricing plans">
+          <article class="plan-card">
+            <div class="plan-title">Free</div>
+            <div class="plan-body">
+              <p>Perfect for hobbyists, students, or early-stage creators.</p>
+              <div class="price-box">
+                <div class="price-row">
+                  <span class="currency">$</span>
+                  <strong data-monthly="0" data-yearly="0">0</strong>
+                  <span class="price-meta">USD /<br>month</span>
+                </div>
+                <button class="plan-button muted" type="button">You're on Creator</button>
+              </div>
+              <ul class="features">
+                <li>Access to a basic asset library</li>
+                <li>15-second video animation</li>
+                <li>Generate up to 10 scenes/month</li>
+                <li>Watermarked exports</li>
+                <li>Try basic AI prompts</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="plan-card featured">
+            <div class="image-strip">
+              <div class="plan-title">Creator</div>
+            </div>
+            <div class="plan-body">
+              <p>For indie creators, and startups who need high-quality output</p>
+              <div class="price-box">
+                <div class="price-row">
+                  <span class="currency">$</span>
+                  <strong data-monthly="20" data-yearly="192">20</strong>
+                  <span class="price-meta">USD /<br>month</span>
+                </div>
+                <button class="plan-button muted strong" type="button">Current Plan</button>
+              </div>
+              <ul class="features">
+                <li>Everything in Free</li>
+                <li>Unlimited 3D scene generation</li>
+                <li>Premium asset library access</li>
+                <li>Animations up to 30 seconds</li>
+                <li>20+ Video AI models</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="plan-card" id="studio">
+            <div class="plan-title">Studio</div>
+            <div class="plan-body">
+              <p>For teams and studios that need power, speed.</p>
+              <div class="price-box">
+                <div class="price-row">
+                  <span class="currency">$</span>
+                  <strong data-monthly="40" data-yearly="384">40</strong>
+                  <span class="price-meta">USD /<br>month</span>
+                </div>
+                <button class="plan-button dark" type="button">Get Studio</button>
+              </div>
+              <ul class="features">
+                <li>Everything in Creator</li>
+                <li>Unlimited 3D scene generation</li>
+                <li>Full access to premium asset library</li>
+                <li>Animations up to 60 seconds</li>
+                <li>Unlimited Video AI models</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
+
+
+
+

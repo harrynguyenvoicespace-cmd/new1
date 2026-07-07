@@ -1,0 +1,36 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "roblox-ugc-ai-studio",
+  "base_dir": ".open-next/server-functions/default/.next",
+  "find_additional_modules": true,
+  "preserve_file_names": true,
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "rules": [
+    {
+      "type": "CommonJS",
+      "globs": [
+        "server/**/*.js"
+      ],
+      "fallthrough": true
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "NEXT_PUBLIC_API_ROOT_URL": "https://tripo-cloudflare-api.harrynguyenvoicespace.workers.dev/v1",
+    "NEXT_PUBLIC_TRIPO_API_ROOT_URL": "https://tripo-cloudflare-api.harrynguyenvoicespace.workers.dev/v1"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "roblox-ugc-ai-studio"
+    }
+  ]
+}

@@ -202,6 +202,10 @@ export interface CameraState {
 
 export type ShadingMode = 'wireframe' | 'solid' | 'material' | 'textured';
 
+export type SkyboxFaceName = 'front' | 'back' | 'left' | 'right' | 'up' | 'down';
+
+export type SkyboxFaces = Record<SkyboxFaceName, string>;
+
 export interface ViewportState {
   camera: CameraState;
   shadingMode: ShadingMode;
@@ -210,6 +214,7 @@ export interface ViewportState {
   gridSize: number;
   gridSnapping: boolean;
   backgroundColor: Vector3;
+  skyboxFaces?: SkyboxFaces | null;
   // Auto-orbit interval in seconds; 0 disables. Used for subtle recording orbits.
   autoOrbitIntervalSec?: 0 | 1 | 5 | 15;
   // If set, the editor uses this scene object (camera) as the active view camera

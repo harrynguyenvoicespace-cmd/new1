@@ -1,0 +1,159 @@
+.studioShell {
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  background: #f3f2ee;
+  color: #17181c;
+}
+
+.studioGrid {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 4px;
+  padding: 4px;
+}
+
+.viewerPane {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 4px;
+  box-shadow: 0 24px 70px rgba(36, 40, 45, 0.13);
+}
+
+.mobileTabBar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .studioShell {
+    background: #f3f2ee;
+  }
+
+  .studioGrid {
+    position: relative;
+    height: calc(100dvh - 74px);
+    padding: 8px 8px 0;
+  }
+
+  .mobilePane {
+    position: absolute;
+    inset: 8px 8px 0;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    display: none;
+  }
+
+  .mobilePaneActive {
+    display: flex;
+  }
+
+  .viewerPane {
+    border-radius: 22px;
+    padding: 4px;
+  }
+
+  .viewerPane > div {
+    border-radius: 18px;
+  }
+
+  .viewerPane.mobilePane {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    background: #dfe3e2;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .viewerPane.mobilePane > [data-studio-viewer-frame] {
+    width: 100vw;
+    height: 100dvh;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #e8e5e0 !important;
+    box-shadow: none !important;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-layout]) {
+    background: #e8e5e0;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-content]) {
+    height: 100%;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-menu-bar]),
+  .viewerPane.mobilePane :global([data-editor-bottom-tools]) {
+    display: none;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-floating-toolbar]) {
+    top: max(12px, calc(env(safe-area-inset-top, 0px) + 10px));
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+    align-items: stretch;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-floating-toolbar] > *) {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .viewerPane.mobilePane :global([data-editor-floating-toolbar] > *::-webkit-scrollbar) {
+    display: none;
+  }
+
+  .mobileTabBar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    height: 74px;
+    padding: 9px 12px calc(9px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(31, 32, 36, 0.1);
+    background: rgba(250, 250, 248, 0.95);
+    box-shadow: 0 -14px 34px rgba(25, 27, 31, 0.12);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobileTabBar button {
+    min-width: 0;
+    height: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    color: #68707a;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 760;
+    transition: background 150ms ease, color 150ms ease, transform 130ms ease;
+  }
+
+  .mobileTabBar button:active {
+    transform: scale(0.98);
+  }
+
+  .mobileTabBar .mobileTabActive {
+    background: #202124;
+    color: #ffcc16;
+  }
+}

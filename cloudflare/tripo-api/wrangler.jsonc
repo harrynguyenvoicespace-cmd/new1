@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "tripo-cloudflare-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-06",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "PUBLIC_API_ROOT_URL": "https://tripo-cloudflare-api.harrynguyenvoicespace.workers.dev/v1",
+    "TRIPO_API_BASE_URL": "https://api.tripo3d.ai/v2/openapi",
+    "ALLOWED_ORIGINS": "http://localhost:3000,http://127.0.0.1:3000,https://roblox-ugc-ai-studio.harrynguyenvoicespace.workers.dev"
+  }
+}

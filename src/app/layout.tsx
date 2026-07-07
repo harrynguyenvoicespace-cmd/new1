@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import { ReactScan } from "@/components/react-scan";
 
@@ -13,6 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const landingSans = DM_Sans({
+  variable: "--font-landing-sans",
+  subsets: ["latin"],
+});
+
+const landingDisplay = Bricolage_Grotesque({
+  variable: "--font-landing-display",
+  subsets: ["latin"],
+});
 export const metadata: Metadata = {
   title: "Gestalt 3D Editor",
   description: "A (soon) powerful 3D editing tool",
@@ -29,7 +38,7 @@ export default function RootLayout({
         {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" /> */}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${landingSans.variable} ${landingDisplay.variable} antialiased`}
       >
         {/* <ReactScan /> */}
         {children}

@@ -1,7 +1,7 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { subscribeWithSelector } from 'zustand/middleware';
-import { ViewportState, CameraState, ShadingMode } from '../types/geometry';
+import { ViewportState, CameraState, ShadingMode, type SkyboxFaces } from '../types/geometry';
 import { vec3 } from '../utils/geometry';
 
 interface ViewportActions {
@@ -14,6 +14,8 @@ interface ViewportActions {
   setGridSnapping: (enabled: boolean) => void;
   toggleGridSnapping: () => void;
   setBackgroundColor: (color: [number, number, number]) => void;
+  setSkyboxFaces: (faces: SkyboxFaces) => void;
+  clearSkybox: () => void;
   resetCamera: () => void;
   focusOnObject: (center: [number, number, number], size: number) => void;
   setAutoOrbitInterval: (sec: 0 | 1 | 5 | 15) => void;
@@ -43,7 +45,8 @@ export const useViewportStore = create<ViewportStore>()(
       showAxes: true,
       gridSize: 1,
       gridSnapping: false,
-      backgroundColor: vec3(0.01, 0.01, 0.01),
+      backgroundColor: vec3(0.93, 0.95, 0.98),
+      skyboxFaces: null,
   autoOrbitIntervalSec: 0,
 
       // Actions
@@ -100,6 +103,18 @@ export const useViewportStore = create<ViewportStore>()(
         });
       },
 
+      setSkyboxFaces: (faces: SkyboxFaces) => {
+        set((state) => {
+          state.skyboxFaces = faces;
+        });
+      },
+
+      clearSkybox: () => {
+        set((state) => {
+          state.skyboxFaces = null;
+        });
+      },
+
       setAutoOrbitInterval: (sec: 0 | 1 | 5 | 15) => {
         set((state) => {
           state.autoOrbitIntervalSec = sec;
@@ -150,7 +165,8 @@ export const useViewportStore = create<ViewportStore>()(
           state.showAxes = true;
           state.gridSize = 1;
           state.gridSnapping = false;
-          state.backgroundColor = vec3(.1, .1, .1);
+          state.backgroundColor = vec3(0.93, 0.95, 0.98);
+          state.skyboxFaces = null;
           state.autoOrbitIntervalSec = 0;
         });
       },
@@ -168,4 +184,6 @@ export const useViewportSettings = () => useViewportStore((state) => ({
   gridSize: state.gridSize,
   gridSnapping: state.gridSnapping,
   backgroundColor: state.backgroundColor,
+  skyboxFaces: state.skyboxFaces,
 }));
+

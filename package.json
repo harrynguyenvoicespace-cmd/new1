@@ -4,9 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build && node tools/fix-opennext-turbopack-windows.mjs",
+    "build:next": "next build",
+    "build:cloudflare": "npm run build",
+    "preview:cloudflare": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "tripo:dev": "wrangler dev --config cloudflare/tripo-api/wrangler.jsonc --port 8787",
+    "tripo:deploy": "wrangler deploy --config cloudflare/tripo-api/wrangler.jsonc",
+    "tripo:dry-run": "wrangler deploy --dry-run --config cloudflare/tripo-api/wrangler.jsonc",
+    "tripo:secret": "wrangler secret put TRIPO_API_KEY --config cloudflare/tripo-api/wrangler.jsonc"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.27",
@@ -26,7 +34,7 @@
     "mediabunny": "^1.12.1",
     "motion": "^12.23.12",
     "nanoid": "^5.1.5",
-    "next": "16.1.6",
+    "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-scan": "^0.4.3",
@@ -40,14 +48,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@opennextjs/cloudflare": "^1.20.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.105.0"
   },
   "overrides": {
     "@types/react": "19.2.14",
