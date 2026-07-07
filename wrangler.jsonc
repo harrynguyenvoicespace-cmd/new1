@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "roblox-ugc-ai-studio",
+  "name": "new122",
   "base_dir": ".open-next/server-functions/default/.next",
   "find_additional_modules": true,
   "preserve_file_names": true,
